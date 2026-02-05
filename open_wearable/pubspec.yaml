@@ -31,28 +31,71 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  # ==========================================
+  # UI & ICONS
+  # ==========================================
   cupertino_icons: ^1.0.8
-  open_file: ^3.3.2
-  open_earable_flutter: ^2.2.5
-  flutter_platform_widgets: ^9.0.0
-  provider: ^6.1.2
-  logger: ^2.5.0
-  community_charts_flutter: ^1.0.4
   flutter_svg: ^2.0.17
   flutter_colorpicker: ^1.1.0
   flutter_staggered_grid_view: ^0.7.0
+  flutter_platform_widgets: ^10.0.1
+  google_fonts: ^8.0.0
+
+  # ==========================================
+  # STATE MANAGEMENT
+  # ==========================================
+  provider: ^6.1.2
   flutter_bloc: ^9.1.1
+
+  # ==========================================
+  # BLUETOOTH LOW ENERGY (BLE)
+  # ==========================================
+  open_earable_flutter: ^2.2.5
+  flutter_blue_plus: ^2.1.0
+  permission_handler: ^12.0.1
+
+  # ==========================================
+  # AUDIO PLAYBACK & MANAGEMENT
+  # ==========================================
+  just_audio: ^0.10.5
+  audio_session: ^0.2.2
+  on_audio_query: ^2.9.0
+
+  # ==========================================
+  # AUDIO ANALYSIS (Beat Detection)
+  # ==========================================
+  fftea: ^1.0.1
+
+  # ==========================================
+  # CHARTS & VISUALIZATION
+  # ==========================================
+  community_charts_flutter: ^1.0.4
   fl_chart: ^1.0.0
+
+  # ==========================================
+  # FILE HANDLING
+  # ==========================================
+  open_file: ^3.3.2
   file_picker: ^10.3.7
-  mcumgr_flutter: ^0.6.1
   file_selector: ^1.0.3
   path_provider: ^2.1.5
-  share_plus: ^12.0.1
   flutter_archive: ^6.0.3
+
+  # ==========================================
+  # MATH & VECTORS
+  # ==========================================
+  vector_math: ^2.1.4
+
+  # ==========================================
+  # UTILITIES
+  # ==========================================
+  logger: ^2.5.0
+  rxdart: ^0.28.0
+  collection: ^1.18.0
   shared_preferences: ^2.5.3
+  share_plus: ^12.0.1
   url_launcher: ^6.3.2
+  mcumgr_flutter: ^0.6.1
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +123,8 @@ flutter:
   assets:
     - lib/apps/posture_tracker/assets/
     - lib/apps/heart_tracker/assets/
+    - lib/apps/just_headbang/assets/images/
+    - lib/apps/just_headbang/assets/audios/
 
   # An image asset can refer to one or more resolution-specific "variants", seeq
   # https://flutter.dev/to/resolution-aware-images
