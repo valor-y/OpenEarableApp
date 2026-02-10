@@ -5,8 +5,8 @@ import 'package:open_wearable/apps/just_headbang/utils/music_service_factory.dar
 
 class MusicViewModel extends ChangeNotifier {
   MusicService _musicService;
-  MusicSourceType _currentSource = MusicSourceType.local;
-  MusicViewModel() : _musicService = MusicServiceFactory.create(MusicSourceType.local);
+  MusicSourceType _currentSource = MusicSourceType.bundled;
+  MusicViewModel() : _musicService = MusicServiceFactory.create(MusicSourceType.bundled);
   MusicTrack? _currentTrack;
   Duration _position = Duration.zero;
   bool _isPlaying = false;

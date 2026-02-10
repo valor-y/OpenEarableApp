@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:open_wearable/apps/just_headbang/model/music_track.dart';
 
 class SettingsViewModel extends ChangeNotifier {
-  MusicSourceType _selectedMusicService = MusicSourceType.local;
+  MusicSourceType _selectedMusicService = MusicSourceType.bundled;
   double _sensitivity = 0.5;
 
   Future<void> setMusicService(MusicSourceType type) async {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:open_wearable/apps/just_headbang/model/music_track.dart';
 import 'package:open_wearable/apps/just_headbang/viewmodel/game_viewmodel.dart';
 
 class GameView extends StatefulWidget {
@@ -41,6 +40,13 @@ class _GameViewState extends State<GameView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text('Game'),
+      ),
       body: Stack(
         children: [
           // Score View and Combo Counter
@@ -50,26 +56,80 @@ class _GameViewState extends State<GameView> {
             right: 16,
             child: _ScoreView(score: _score, combo: _combo),
           ),
-          // Music + Sensor visualization
-          Center(child: Text('Music and Sensor Visualization Placeholder')),
-          
-          // music controls
-          Positioned(
-            bottom: 48,
-            left: 16,
-            right: 16,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          // Music + Sensor visualization with track info and play button below
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.play_arrow),
-                  color: Colors.white,
-                  iconSize: 48,
-                  onPressed: () { 
-                    //set play and change to pause icon
-                    //TODO: implement play functionality
-                    widget._viewModel.startGame(MusicTrack(id: 'track1', title: 'Sample Track', artist: '', duration: Duration.zero, sourceType: MusicSourceType.local));
-                  },
+                const Text('Music and Sensor Visualization Placeholder'),
+                const SizedBox(height: 12),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget._viewModel.currentSession?.track.title ??
+                            'No Track',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        widget._viewModel.currentSession?.track.artist ?? '',
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        if (widget._viewModel.getCurrentPlayer() != null) {
+                          await widget._viewModel.startGame();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: const Color(0xFF2196F3),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.play_arrow, size: 28),
+                          SizedBox(width: 8),
+                          Text(
+                            'Play',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -116,7 +176,7 @@ class _StatCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.6),
+          color: Colors.blue.withOpacity(0.7),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(

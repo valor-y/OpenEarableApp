@@ -2,28 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:open_wearable/apps/just_headbang/model/beat_detection.dart';
 import 'package:open_wearable/apps/just_headbang/model/game_session.dart';
 import 'package:open_wearable/apps/just_headbang/model/music_track.dart';
+import 'package:open_wearable/apps/just_headbang/model/player.dart';
 import 'package:open_wearable/apps/just_headbang/model/sensor_data.dart';
 import 'package:open_wearable/apps/just_headbang/services/beat_detection_service.dart';
 import 'package:open_wearable/apps/just_headbang/services/scoring_service.dart';
-import 'package:open_wearable/apps/just_headbang/viewmodel/music_viewmodel.dart';
 import 'package:open_wearable/apps/just_headbang/viewmodel/sensor_viewmodel.dart';
 
 class GameViewModel extends ChangeNotifier {
-  final MusicViewModel _musicViewModel;
   final SensorViewModel _sensorViewModel;
-  final BeatDetectionService _beatService;
-  final ScoringService _scoringService;
-  
+  final BeatDetectionService _beatService;  
+
   GameSession? _currentSession;
   List<BeatTimestamp> _upcomingBeats = [];
 
-  GameViewModel(this._musicViewModel, this._sensorViewModel, this._beatService, this._scoringService);
-  
+  GameViewModel(this._sensorViewModel, this._beatService) {
+    _currentSession = GameSession(
+      track: getDefaultTrack(),
+      player: defaultPlayer,
+    );
+  }
+
   GameSession? get currentSession => _currentSession;
-  
-  /// Start a new game session with the given track
-  Future<void> startGame(MusicTrack track) async {
-    _currentSession = GameSession(track: track);
+
+  /// Update the selected track before starting the game
+  void setSelectedTrack(MusicTrack track) {
+    final currentPlayer = _currentSession?.player ?? defaultPlayer;
+    _currentSession = GameSession(track: track, player: currentPlayer);
+    notifyListeners();
+  }
+
+  /// Update the selected player name before starting the game
+  void setPlayerName(String playerName) {
+    final currentTrack = _currentSession?.track ?? getDefaultTrack();
+    final currentPlayer = _currentSession?.player ?? defaultPlayer;
+    _currentSession = GameSession(track: currentTrack, player: currentPlayer);
+    notifyListeners();
+  }
+
+  /// Start a new game session using the currently selected track and player
+  Future<void> startGame() async {
+    final currentTrack = _currentSession?.track ?? getDefaultTrack();
+    final currentPlayer = _currentSession?.player ?? defaultPlayer;
+    _currentSession =
+        GameSession(track: currentTrack, player: currentPlayer);
     _upcomingBeats = [];
     _beatService.getRealTimeBeats().listen((beat) {
       _upcomingBeats.add(beat);
@@ -31,9 +52,11 @@ class GameViewModel extends ChangeNotifier {
     notifyListeners();
     return;
   }
+
   void processHeadbang(SensorData data) {
     _checkBeatAlignment();
   }
+
   void endGame() {
     //TODO store session results
 
@@ -41,13 +64,17 @@ class GameViewModel extends ChangeNotifier {
     _upcomingBeats = [];
     notifyListeners();
   }
+
   void _checkBeatAlignment() {
     // Check if the latest headbang aligns with the next beat
     final headbangTime = _sensorViewModel.latestData?.timestamp;
     if (headbangTime == null || _upcomingBeats.isEmpty) return;
 
     final beat = _upcomingBeats.first;
-    final timeDiff = headbangTime.difference(beat.timestamp as DateTime).inMilliseconds.abs();
+    final timeDiff = headbangTime
+        .difference(beat.timestamp as DateTime)
+        .inMilliseconds
+        .abs();
 
     HitResult result;
     if (timeDiff <= 100) {
@@ -59,10 +86,14 @@ class GameViewModel extends ChangeNotifier {
     }
 
     _currentSession?.addHit(result);
-    _currentSession?.score += _scoringService.calculateScore(result, _currentSession!.combo);
     _upcomingBeats.removeAt(0);
     notifyListeners();
   }
+
   int get score => _currentSession?.score ?? 0;
   int get combo => _currentSession?.combo ?? 0;
+
+  String? getCurrentPlayer() {
+    return _currentSession?.player.name;
+  }
 }

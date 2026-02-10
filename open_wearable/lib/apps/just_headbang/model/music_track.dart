@@ -10,11 +10,10 @@ class MusicTrack {
   final String title;
   final String artist;
   final Duration duration;
-  final String albumArt;
   final List<BeatTimestamp> beats;
   
   final MusicSourceType sourceType;
-  final String? filePath;      // for local files
+  final String? assetPath;      // for bundled files
   final String? spotifyUri;    // for Spotify
   
   MusicTrack({
@@ -22,16 +21,27 @@ class MusicTrack {
     required this.title,
     required this.artist,
     required this.duration,
-    this.albumArt = '',
     this.beats = const [],
     required this.sourceType,
-    this.filePath,
+    this.assetPath,
     this.spotifyUri,
   });
 }
 
 enum MusicSourceType {
-  local,
+  bundled,
   spotify, //TODO: not fully implemented yet
-  // appleMusic implement later
+  // appleMusic implementation later
+}
+
+// Factory method to create a default track for testing
+MusicTrack getDefaultTrack() {
+  return MusicTrack(
+    id: 'default',
+    title: 'Sample Track',
+    artist: 'Unknown Artist',
+    duration: Duration.zero,
+    sourceType: MusicSourceType.bundled,
+    assetPath: 'assets/default_track.mp3',
+  );
 }

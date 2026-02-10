@@ -20,7 +20,7 @@ class ScoringService {
     }
   }
   
-  int calculateScore(HitResult result, int combo) {
+  int calculateScore(HitResult result, int combo, {required bool isPerfect}) {
     switch (result) {
       case HitResult.perfect:
         return 100 + (combo * 10);
