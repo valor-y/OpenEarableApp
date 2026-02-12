@@ -124,7 +124,7 @@ flutter:
     - lib/apps/posture_tracker/assets/
     - lib/apps/heart_tracker/assets/
     - lib/apps/just_headbang/assets/images/
-    - lib/apps/just_headbang/assets/audios/
+    - lib/apps/just_headbang/assets/music/
 
   # An image asset can refer to one or more resolution-specific "variants", seeq
   # https://flutter.dev/to/resolution-aware-images

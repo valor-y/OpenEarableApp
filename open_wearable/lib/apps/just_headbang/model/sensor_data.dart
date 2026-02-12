@@ -17,4 +17,6 @@ class SensorData {
   bool isHeadbang(double threshold) {
     return headbangIntensity >= threshold;
   }
+
+  
 }

@@ -11,11 +11,11 @@ class BundledMusicService implements MusicService {
   final List<MusicTrack> _tracks = [
     MusicTrack(
       id: 'b1',
-      title: 'Antsocial',
+      title: 'Antisocial',
       artist: 'Anthrax',
       duration: Duration(minutes: 4, seconds: 34),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Anthrax - Antisocial.mp3',
+      assetPath: 'lib/apps/just_headbang/assets/music/Anthrax - Antisocial.mp3',
     ),
     MusicTrack(
       id: 'b2',
@@ -23,23 +23,26 @@ class BundledMusicService implements MusicService {
       artist: 'ARCH ENEMY',
       duration: Duration(minutes: 4, seconds: 58),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/ARCH ENEMY - The Watcher.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/ARCH ENEMY \u2013 The Watcher.mp3',
     ),
     MusicTrack(
       id: 'b3',
-      title: 'Headbangeeeeerrrrr!!!!!',
+      title: 'Headbangeeeeerrrrr!!!!!!!',
       artist: 'BABYMETAL',
       duration: Duration(minutes: 4, seconds: 53),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/BABYMETAL - Headbangeeeeerrrrr!!!!!.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/BABYMETAL - Headbangeeeeerrrrr!!!!!!!.mp3',
     ),
     MusicTrack(
       id: 'b4',
-      title: 'Waking the Demon',
-      artist: 'Bullet for My Valentine',
+      title: 'Waking The Demon',
+      artist: 'Bullet For My Valentine',
       duration: Duration(minutes: 4, seconds: 14),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Bullet for My Valentine - Waking the Demon.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/Bullet For My Valentine - Waking The Demon.mp3',
     ),
     MusicTrack(
       id: 'b5',
@@ -47,7 +50,7 @@ class BundledMusicService implements MusicService {
       artist: 'Gojira',
       duration: Duration(minutes: 4, seconds: 32),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Gojira - Stranded.mp3',
+      assetPath: 'lib/apps/just_headbang/assets/music/Gojira - Stranded.mp3',
     ),
     MusicTrack(
       id: 'b6',
@@ -55,15 +58,17 @@ class BundledMusicService implements MusicService {
       artist: 'Limp Bizkit',
       duration: Duration(minutes: 2, seconds: 47),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Limp Bizkit - Break Stuff.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/Limp Bizkit - Break Stuff.mp3',
     ),
     MusicTrack(
       id: 'b7',
-      title: 'Symphony of Destruction',
+      title: 'Symphony Of Destruction',
       artist: 'Megadeth',
       duration: Duration(minutes: 4, seconds: 18),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Megadeth - Symphony of Destruction.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/Megadeth - Symphony Of Destruction.mp3',
     ),
     MusicTrack(
       id: 'b8',
@@ -71,7 +76,8 @@ class BundledMusicService implements MusicService {
       artist: 'Metallica',
       duration: Duration(minutes: 8, seconds: 35),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Metallica - Master of Puppets.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/Metallica - Master of Puppets.mp3',
     ),
     MusicTrack(
       id: 'b9',
@@ -79,7 +85,7 @@ class BundledMusicService implements MusicService {
       artist: 'Pantera',
       duration: Duration(minutes: 5, seconds: 10),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Pantera - Domination.mp3',
+      assetPath: 'lib/apps/just_headbang/assets/music/Pantera - Domination.mp3',
     ),
     MusicTrack(
       id: 'b10',
@@ -87,15 +93,17 @@ class BundledMusicService implements MusicService {
       artist: 'Parkway Drive',
       duration: Duration(minutes: 5, seconds: 49),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Parkway Drive - The Greatest Fear.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/Parkway Drive - The Greatest Fear.mp3',
     ),
     MusicTrack(
       id: 'b11',
-      title: 'Circle with Me',
+      title: 'Circle With Me',
       artist: 'Spiritbox',
       duration: Duration(minutes: 3, seconds: 53),
       sourceType: MusicSourceType.bundled,
-      assetPath: 'assets/music/Spiritbox - Circle with Me.mp3',
+      assetPath:
+          'lib/apps/just_headbang/assets/music/Spiritbox - Circle With Me.mp3',
     ),
   ];
 

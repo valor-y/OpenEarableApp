@@ -18,6 +18,7 @@ class Player {
 
   int get points => _points;
   int get sessions => _sessions;
+
 }
 
 Player defaultPlayer = Player(name: 'Player1');

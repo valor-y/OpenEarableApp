@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:open_earable_flutter/open_earable_flutter.dart';
 import 'package:open_wearable/apps/heart_tracker/widgets/heart_tracker_page.dart';
+import 'package:open_wearable/apps/just_headbang/model/beat_detection.dart';
 import 'package:open_wearable/apps/just_headbang/services/beat_detection_service.dart';
 import 'package:open_wearable/apps/just_headbang/services/sensor_service.dart';
 import 'package:open_wearable/apps/just_headbang/view/main_view.dart';
 import 'package:open_wearable/apps/just_headbang/viewmodel/game_viewmodel.dart';
+import 'package:open_wearable/apps/just_headbang/viewmodel/music_viewmodel.dart';
+import 'package:open_wearable/apps/just_headbang/viewmodel/player_viewmodel.dart';
 import 'package:open_wearable/apps/just_headbang/viewmodel/sensor_viewmodel.dart';
 import 'package:open_wearable/apps/posture_tracker/model/earable_attitude_tracker.dart';
 import 'package:open_wearable/apps/posture_tracker/view/posture_tracker_view.dart';
@@ -82,6 +85,8 @@ List<AppInfo> _apps = [
         _MockSensorViewModel(),
         _MockBeatDetectionService(),
       ),
+      musicViewModel: MusicViewModel(),
+      playersViewModel: PlayersViewModel(),
     ),
   ),
 ];
@@ -110,10 +115,12 @@ class _MockSensorService implements SensorService {
 }
 
 class _MockBeatDetectionService implements BeatDetectionService {
-  // Empty stub - no beat detection needed for UI testing
+  @override
+  Stream<BeatTimestamp> getRealTimeBeats() => const Stream.empty();
+
   @override
   void noSuchMethod(Invocation invocation) {
-    // Silently ignore all method calls
+    // Silently ignore all other method calls
   }
 }
 

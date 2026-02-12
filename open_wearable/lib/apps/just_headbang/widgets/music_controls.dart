@@ -15,23 +15,11 @@ class MusicControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          icon: const Icon(Icons.skip_previous),
-          onPressed: () async {
-            await musicViewModel.previous();
-          },
-        ),
-        IconButton(
           icon: Icon(
             musicViewModel.isPlaying ? Icons.pause : Icons.play_arrow,
           ),
           onPressed: () async {
             await musicViewModel.togglePlayPause();
-          },
-        ),
-        IconButton(
-          icon: const Icon(Icons.skip_next),
-          onPressed: () async {
-            await musicViewModel.skip();
           },
         ),
       ],
